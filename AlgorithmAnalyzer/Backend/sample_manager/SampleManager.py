@@ -751,10 +751,10 @@ class SampleManager:
             user_samples = user_doc['samples'][purpose] if purpose in user_doc['samples'] else []
             user_samples, user_labels = self._label_sample_dicts(num, user_samples, multilabel)
             if multilabel:
-                samples.extend([self._get_file_from_db(sample['id']) for sample in user_samples])
+                samples.extend([sample['id'] for sample in user_samples] + [self._get_file_from_db])
                 labels.extend(user_labels)
             else:
-                samples[username] = [self._get_file_from_db(sample['id']) for sample in user_samples]
+                samples[username] = [sample['id'] for sample in user_samples] + [self._get_file_from_db]
                 labels[username] = user_labels
         return samples, labels
 

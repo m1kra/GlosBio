@@ -61,6 +61,8 @@ class SimpleNN(Algorithm):
         }
 
     def train(self, samples, labels):
+        fnc = samples[-1]
+        samples = [fnc(sample) for sample in samples[:-1]]
         print(samples)
         print(labels)  # for some reason gridFS has problems without those prints
         X, y = read_samples(samples, labels, normalized_length=self.SAMPLE_LENGTH)
